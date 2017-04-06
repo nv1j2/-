@@ -1,0 +1,101 @@
+<RT6>  sy
+System View: return to User View with Ctrl+Z.
+[RT6]dis cu
+#
+ version 5.20, Release LITO
+#
+ sysname RT6
+#
+ undo voice vlan mac-address 00e0-bb00-0000
+#
+ domain default enable system
+#
+ telnet server enable
+#
+ rpr mac-address timer aging 100
+#
+vlan 1
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+#
+wlan rrm        
+ dot11a mandatory-rate 6 12 24
+ dot11a supported-rate 9 18 36 48 54
+ dot11b mandatory-rate 1 2
+ dot11b supported-rate 5.5 11
+ dot11g mandatory-rate 1 2 5.5 11
+ dot11g supported-rate 6 9 12 18 24 36 48 54
+#
+attack-defense policy 1
+#
+interface Serial0/1/0
+ link-protocol ppp
+#
+interface Serial0/1/1
+ link-protocol ppp
+#
+interface Serial0/1/2
+ link-protocol ppp
+#
+interface Serial0/1/3
+ link-protocol ppp
+#
+interface NULL0
+#
+interface LoopBack1
+ ip address 6.6.6.6 255.255.255.255
+#
+interface Ethernet0/4/0
+ port link-mode bridge
+#
+interface Ethernet0/4/1
+ port link-mode bridge
+#
+interface Ethernet0/4/2
+ port link-mode bridge
+#
+interface Ethernet0/4/3
+ port link-mode bridge
+#
+interface Ethernet0/4/4
+ port link-mode bridge
+#
+interface Ethernet0/4/5
+ port link-mode bridge
+#
+interface Ethernet0/4/6
+ port link-mode bridge
+#               
+interface Ethernet0/4/7
+ port link-mode bridge
+#
+interface GigabitEthernet0/0/0
+ port link-mode route
+#
+interface GigabitEthernet0/0/1
+ port link-mode route
+ ip address 10.1.1.2 255.255.255.0
+#
+interface GigabitEthernet0/0/2
+ port link-mode route
+#
+interface GigabitEthernet0/0/3
+ port link-mode route
+#
+ load xml-configuration
+#
+ load tr069-configuration
+#
+user-interface con 0
+user-interface vty 0
+ user privilege level 3
+ set authentication password cipher +Q4Z3D_*-N[Q=^Q`MAF4<1!!
+user-interface vty 1 4
+#
+return

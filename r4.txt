@@ -1,0 +1,115 @@
+[RT4]dis cu
+#
+ version 5.20, Release LITO
+#
+ sysname RT4
+#
+ undo voice vlan mac-address 00e0-bb00-0000
+#
+ dhcp relay server-group 2 ip 172.16.10.5
+#
+ domain default enable system
+#
+ telnet server enable
+#
+ rpr mac-address timer aging 100
+#
+vlan 1
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+#
+wlan rrm
+ dot11a mandatory-rate 6 12 24
+ dot11a supported-rate 9 18 36 48 54
+ dot11b mandatory-rate 1 2
+ dot11b supported-rate 5.5 11
+ dot11g mandatory-rate 1 2 5.5 11
+ dot11g supported-rate 6 9 12 18 24 36 48 54
+#
+attack-defense policy 1
+#
+interface Serial0/1/0
+ link-protocol ppp
+#
+interface Serial0/1/1
+ link-protocol ppp
+#
+interface Serial0/1/2
+ link-protocol ppp
+#
+interface Serial0/1/3
+ link-protocol ppp
+#               
+interface NULL0
+#
+interface LoopBack1
+ ip address 4.4.4.4 255.255.255.255
+#
+interface Ethernet0/4/0
+ port link-mode bridge
+#
+interface Ethernet0/4/1
+ port link-mode bridge
+#
+interface Ethernet0/4/2
+ port link-mode bridge
+#
+interface Ethernet0/4/3
+ port link-mode bridge
+#
+interface Ethernet0/4/4
+ port link-mode bridge
+#
+interface Ethernet0/4/5
+ port link-mode bridge
+#               
+interface Ethernet0/4/6
+ port link-mode bridge
+#
+interface Ethernet0/4/7
+ port link-mode bridge
+#
+interface GigabitEthernet0/0/0
+ port link-mode route
+#
+interface GigabitEthernet0/0/1
+ port link-mode route
+ ip address 192.168.4.1 255.255.255.252
+ dhcp select relay
+ dhcp relay server-select 2
+#
+interface GigabitEthernet0/0/2
+ port link-mode route
+ ip address 172.16.10.6 255.255.255.252
+#
+interface GigabitEthernet0/0/3
+ port link-mode route
+ ip address 172.16.10.9 255.255.255.252
+#               
+ospf 1 router-id 4.4.4.4
+ area 0.0.0.0
+  network 192.168.4.0 0.0.0.255
+  network 172.16.10.0 0.0.0.255
+  network 4.4.4.4 0.0.0.0
+#
+ ip route-static 0.0.0.0 0.0.0.0 172.16.10.5
+#
+ dhcp enable
+#
+ load xml-configuration
+#
+ load tr069-configuration
+#
+user-interface con 0
+user-interface vty 0
+ user privilege level 3
+ set authentication password cipher +Q4Z3D_*-N[Q=^Q`MAF4<1!!
+user-interface vty 1 4
+#
+return
