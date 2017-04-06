@@ -10,3 +10,5 @@
 8、使用ip地址规划技术，所有的互联地址掩码均为/30
 9、使用acl技术，让PC1和PC2不能够互相访问，但都能够和网关通信。
 </pre>
+拓扑图
+https://github.com/nv1j2/Simple-Park-Network/blob/master/%E8%AF%95%E9%AA%8C%E6%8B%93%E6%89%91%E5%9B%BE.png
